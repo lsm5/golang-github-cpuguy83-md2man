@@ -19,7 +19,7 @@ Converts markdown into roff (man pages).}
 %global gosupfiles glide.lock glide.yaml
 
 Name:           %{goname}
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Converts markdown into roff (man pages)
 
 License:        MIT
@@ -61,6 +61,9 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %gopkgfiles
 
 %changelog
+* Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.0-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
 * Sat Jan 09 15:45:35 CET 2021 Robert-André Mauchin <zebob.m@gmail.com> - 2.0.0-3.20210109gitaf8da76
 - Bump to commit af8da765f0460ccb1d91003b4945a792363a94ca
 
