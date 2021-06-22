@@ -15,7 +15,7 @@ Converts markdown into roff (man pages).}
 
 Name: golang-github-cpuguy83-md2man
 Version: 2.0.0
-Release: 6%{?dist}
+Release: 7%{?dist}
 Summary: Converts markdown into roff (man pages)
 License: MIT
 URL: https://%{import_path}
@@ -49,6 +49,10 @@ install -m 0755 -vp bin/* %{buildroot}%{_bindir}/
 %{_bindir}/*
 
 %changelog
+* Tue Jun 22 2021 Mohan Boddu <mboddu@redhat.com> - 2.0.0-7
+- Rebuilt for RHEL 9 BETA for openssl 3.0
+  Related: rhbz#1971065
+
 * Mon Jun 21 2021 Lokesh Mandvekar <lsm5@redhat.com> - 2.0.0-6
 - Resolves: #1974463 - build with vendored sources to reduce package set
 
