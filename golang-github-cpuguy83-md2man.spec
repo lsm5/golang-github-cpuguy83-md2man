@@ -24,6 +24,7 @@ Release: 8%{?dist}
 Summary: Converts markdown into roff (man pages)
 License: MIT
 URL: https://%{import_path}
+ExcludeArch: %{ix86}
 Source0: %{url}/archive/v%{version}.tar.gz
 BuildRequires: golang
 Provides: %{repo} = %{version}-%{release}
