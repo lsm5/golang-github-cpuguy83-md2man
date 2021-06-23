@@ -1,5 +1,10 @@
 %bcond_without check
 
+%if ! 0%{?gobuild:1}
+%define gobuild(o:) \
+go build -buildmode pie -compiler gc -tags="rpm_crashtraceback libtrust_openssl ${BUILDTAGS:-}" -ldflags "${LDFLAGS:-} -linkmode=external -compressdwarf=false -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n') -extldflags '%__global_ldflags'" -a -v %{?**};
+%endif
+
 # https://github.com/cpuguy83/go-md2man
 %global provider github
 %global provider_tld com
@@ -15,7 +20,7 @@ Converts markdown into roff (man pages).}
 
 Name: golang-github-cpuguy83-md2man
 Version: 2.0.0
-Release: 7%{?dist}
+Release: 8%{?dist}
 Summary: Converts markdown into roff (man pages)
 License: MIT
 URL: https://%{import_path}
@@ -49,6 +54,9 @@ install -m 0755 -vp bin/* %{buildroot}%{_bindir}/
 %{_bindir}/*
 
 %changelog
+* Wed Jun 23 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 2.0.0-8
+- Resolves: #1975362 - fix gobuild issues
+
 * Tue Jun 22 2021 Mohan Boddu <mboddu@redhat.com> - 2.0.0-7
 - Rebuilt for RHEL 9 BETA for openssl 3.0
   Related: rhbz#1971065
