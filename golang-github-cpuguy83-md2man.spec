@@ -2,7 +2,7 @@
 
 %if ! 0%{?gobuild:1}
 %define gobuild(o:) \
-go build -buildmode pie -compiler gc -tags="rpm_crashtraceback libtrust_openssl ${BUILDTAGS:-}" -ldflags "${LDFLAGS:-} -linkmode=external -compressdwarf=false -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n') -extldflags '%__global_ldflags'" -a -v %{?**};
+go build -buildmode pie -compiler gc -tags="rpm_crashtraceback ${BUILDTAGS:-}" -ldflags "${LDFLAGS:-} -linkmode=external -compressdwarf=false -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n') -extldflags '%__global_ldflags'" -a -v %{?**};
 %endif
 
 # https://github.com/cpuguy83/go-md2man
@@ -25,6 +25,7 @@ Summary: Converts markdown into roff (man pages)
 License: MIT
 URL: https://%{import_path}
 Source0: %{url}/archive/v%{version}.tar.gz
+BuildRequires: golang
 Provides: %{repo} = %{version}-%{release}
 
 %description
