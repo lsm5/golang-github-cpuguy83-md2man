@@ -27,6 +27,7 @@ URL: https://%{import_path}
 ExcludeArch: %{ix86}
 Source0: %{url}/archive/v%{version}.tar.gz
 BuildRequires: golang
+BuildRequires: git-core
 Provides: %{repo} = %{version}-%{release}
 
 %description
