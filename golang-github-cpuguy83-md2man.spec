@@ -20,7 +20,7 @@ Converts markdown into roff (man pages).}
 
 Name: golang-github-cpuguy83-md2man
 Version: 2.0.0
-Release: 8%{?dist}
+Release: 9%{?dist}
 Summary: Converts markdown into roff (man pages)
 License: MIT
 URL: https://%{import_path}
@@ -57,6 +57,9 @@ install -m 0755 -vp bin/* %{buildroot}%{_bindir}/
 %{_bindir}/*
 
 %changelog
+* Tue Jul 06 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 2.0.0-9
+- Resolves: #1975362 - rebuild with explicit git-core dep
+
 * Wed Jun 23 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 2.0.0-8
 - Resolves: #1975362 - fix gobuild issues
 
