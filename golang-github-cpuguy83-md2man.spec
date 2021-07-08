@@ -20,7 +20,7 @@ Converts markdown into roff (man pages).}
 
 Name: golang-github-cpuguy83-md2man
 Version: 2.0.0
-Release: 10%{?dist}
+Release: 11%{?dist}
 Summary: Converts markdown into roff (man pages)
 License: MIT
 URL: https://%{import_path}
@@ -58,6 +58,9 @@ install -m 0755 -vp bin/* %{buildroot}%{_bindir}/
 %{_bindir}/*
 
 %changelog
+* Thu Jul 08 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 2.0.0-11
+- Resolves: #1975362 - add gating.yaml
+
 * Thu Jul 08 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 2.0.0-10
 - Resolves: #1975362 - build with CGO_CFLAGS defined
 
