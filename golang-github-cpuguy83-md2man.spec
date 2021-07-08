@@ -20,7 +20,7 @@ Converts markdown into roff (man pages).}
 
 Name: golang-github-cpuguy83-md2man
 Version: 2.0.0
-Release: 9%{?dist}
+Release: 10%{?dist}
 Summary: Converts markdown into roff (man pages)
 License: MIT
 URL: https://%{import_path}
@@ -41,6 +41,7 @@ ln -s vendor src
 mkdir -p src/%{provider}.%{provider_tld}/%{project}
 ln -s $(pwd) src/%{import_path}
 export GOPATH=$(pwd)
+export CGO_CFLAGS="%{optflags} -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64"
 GOPATH=$GOPATH %gobuild -o bin/go-md2man %{import_path}
 
 %install
@@ -57,6 +58,9 @@ install -m 0755 -vp bin/* %{buildroot}%{_bindir}/
 %{_bindir}/*
 
 %changelog
+* Thu Jul 08 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 2.0.0-10
+- Resolves: #1975362 - build with CGO_CFLAGS defined
+
 * Tue Jul 06 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 2.0.0-9
 - Resolves: #1975362 - rebuild with explicit git-core dep
 
