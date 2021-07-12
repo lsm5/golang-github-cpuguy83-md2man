@@ -11,6 +11,8 @@ GO111MODULE=off go build -buildmode pie -compiler gc -tags="rpm_crashtraceback $
 %global project cpuguy83
 %global repo go-md2man
 %global import_path github.com/cpuguy83/go-md2man
+%global commit0 af8da765f0460ccb1d91003b4945a792363a94ca
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 %global common_description %{expand:
 Converts markdown into roff (man pages).}
@@ -20,12 +22,12 @@ Converts markdown into roff (man pages).}
 
 Name: golang-github-cpuguy83-md2man
 Version: 2.0.0
-Release: 12%{?dist}
+Release: 13.git%{shortcommit0}%{?dist}
 Summary: Converts markdown into roff (man pages)
 License: MIT
 URL: https://%{import_path}
 ExcludeArch: %{ix86}
-Source0: %{url}/archive/v%{version}.tar.gz
+Source0: %{url}/archive/%{commit0}.tar.gz
 BuildRequires: golang
 BuildRequires: git-core
 Provides: %{repo} = %{version}-%{release}
@@ -34,7 +36,7 @@ Provides: %{repo} = %{version}-%{release}
 %{common_description}
 
 %prep
-%autosetup -Sgit -n %{repo}-%{version}
+%autosetup -Sgit -n %{repo}-%{commit0}
 
 %build
 ln -s vendor src
@@ -61,6 +63,9 @@ install -m 0755 -vp bin/* %{buildroot}%{_bindir}/
 %{_bindir}/*
 
 %changelog
+* Mon Jul 12 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 2.0.0-13.gitaf8da76
+- Resolves: #1975362 - use latest upstream commit
+
 * Fri Jul 09 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 2.0.0-12
 - Resolves: #1975362 - add -fcf-protection to CGO_CFLAGS
 
