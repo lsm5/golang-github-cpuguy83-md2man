@@ -22,7 +22,7 @@ Converts markdown into roff (man pages).}
 
 Name: golang-github-cpuguy83-md2man
 Version: 2.0.0
-Release: 13.git%{shortcommit0}%{?dist}
+Release: 14.git%{shortcommit0}%{?dist}
 Summary: Converts markdown into roff (man pages)
 License: MIT
 URL: https://%{import_path}
@@ -45,7 +45,7 @@ ln -s $(pwd) src/%{import_path}
 export GOPATH=$(pwd)
 export CGO_CFLAGS="%{optflags} -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64"
 %ifarch x86_64
-export CGO_CFLAGS+=" -fcf-protection"
+export CGO_CFLAGS+=" -fcf-protection=full"
 %endif
 GOPATH=$GOPATH %gobuild -o bin/go-md2man %{import_path}
 
@@ -63,6 +63,9 @@ install -m 0755 -vp bin/* %{buildroot}%{_bindir}/
 %{_bindir}/*
 
 %changelog
+* Tue Jul 13 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 2.0.0-14.gitaf8da76
+- Resolves: #1975362 - enable full cf-protection for x86_64
+
 * Mon Jul 12 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 2.0.0-13.gitaf8da76
 - Resolves: #1975362 - use latest upstream commit
 
