@@ -22,7 +22,7 @@ Converts markdown into roff (man pages).}
 
 Name: golang-github-cpuguy83-md2man
 Version: 2.0.0
-Release: 14.git%{shortcommit0}%{?dist}
+Release: 15.git%{shortcommit0}%{?dist}
 Summary: Converts markdown into roff (man pages)
 License: MIT
 URL: https://%{import_path}
@@ -63,6 +63,9 @@ install -m 0755 -vp bin/* %{buildroot}%{_bindir}/
 %{_bindir}/*
 
 %changelog
+* Thu Jul 15 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 2.0.0-15.gitaf8da76
+- Resolves: #1975362 - enable additional hardening flags
+
 * Tue Jul 13 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 2.0.0-14.gitaf8da76
 - Resolves: #1975362 - enable full cf-protection for x86_64
 
@@ -97,8 +100,11 @@ install -m 0755 -vp bin/* %{buildroot}%{_bindir}/
 * Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.0-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
-* Sat Jan 09 15:45:35 CET 2021 Robert-André Mauchin <zebob.m@gmail.com> - 2.0.0-3.20210109gitaf8da76
+* Sat Jan 09 2021 Robert-André Mauchin <zebob.m@gmail.com> - 2.0.0-3.20210109gitaf8da76
 - Bump to commit af8da765f0460ccb1d91003b4945a792363a94ca
+
+* Mon Jul 27 2020 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
 * Mon Jul 27 2020 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
@@ -181,13 +187,6 @@ install -m 0755 -vp bin/* %{buildroot}%{_bindir}/
 
 * Mon Feb 22 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.4-3
 - https://fedoraproject.org/wiki/Changes/golang1.6
-
-* Wed Feb 03 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.4-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
-
-* Mon Dec 14 2015 jchaloup <jchaloup@redhat.com> - 1.0.4-1
-- Rebase to 1.0.4
-  resolves: #1291379
 
 * Thu Sep 10 2015 jchaloup <jchaloup@redhat.com> - 1-13
 - Generate man page as well
