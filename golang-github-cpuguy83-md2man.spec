@@ -22,7 +22,7 @@ Converts markdown into roff (man pages).}
 
 Name: golang-github-cpuguy83-md2man
 Version: 2.0.0
-Release: 15.git%{shortcommit0}%{?dist}
+Release: 16.git%{shortcommit0}%{?dist}
 Summary: Converts markdown into roff (man pages)
 License: MIT
 URL: https://%{import_path}
@@ -63,6 +63,10 @@ install -m 0755 -vp bin/* %{buildroot}%{_bindir}/
 %{_bindir}/*
 
 %changelog
+* Mon Aug 09 2021 Mohan Boddu <mboddu@redhat.com> - 2.0.0-16.gitaf8da76
+- Rebuilt for IMA sigs, glibc 2.34, aarch64 flags
+  Related: rhbz#1991688
+
 * Thu Jul 15 2021 Lokesh Mandvekar <lsm5@fedoraproject.org> - 2.0.0-15.gitaf8da76
 - Resolves: #1975362 - enable additional hardening flags
 
