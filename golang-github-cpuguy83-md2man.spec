@@ -1,5 +1,7 @@
 %bcond_without check
 
+%global debug_package %{nil}
+
 # https://github.com/cpuguy83/go-md2man
 %global provider github
 %global provider_tld com
@@ -35,11 +37,7 @@ Provides: golang-%{provider}-%{project}-%{repo} = %{version}-%{release}
 %autosetup -Sgit -n %{repo}-%{commit0}
 
 %build
-ln -s vendor src
-mkdir -p src/%{provider}.%{provider_tld}/%{project}
-ln -s $(pwd) src/%{import_path}
-export GOPATH=$(pwd)
-go build -o bin/go-md2man %{import_path}
+%{__make}
 
 %install
 install -m 0755 -vd %{buildroot}%{_bindir}
