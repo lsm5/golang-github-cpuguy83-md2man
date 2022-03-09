@@ -31,6 +31,7 @@ Source0: %{url}/archive/%{commit0}.tar.gz
 BuildRequires: golang
 BuildRequires: git-core
 Provides: %{repo} = %{version}-%{release}
+Provides: golang-%{provider}-%{project}-%{repo} = %{version}-%{release}
 
 %description
 %{common_description}
