@@ -1,10 +1,5 @@
 %bcond_without check
 
-%if ! 0%{?gobuild:1}
-%define gobuild(o:) \
-GO111MODULE=off go build -buildmode pie -compiler gc -tags="rpm_crashtraceback ${BUILDTAGS:-}" -ldflags "${LDFLAGS:-} -linkmode=external -compressdwarf=false -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n') -extldflags '%__global_ldflags'" -a -v %{?**};
-%endif
-
 # https://github.com/cpuguy83/go-md2man
 %global provider github
 %global provider_tld com
@@ -44,11 +39,7 @@ ln -s vendor src
 mkdir -p src/%{provider}.%{provider_tld}/%{project}
 ln -s $(pwd) src/%{import_path}
 export GOPATH=$(pwd)
-export CGO_CFLAGS="%{optflags} -D_GNU_SOURCE -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64"
-%ifarch x86_64
-export CGO_CFLAGS+=" -fcf-protection=full"
-%endif
-%gobuild -o bin/go-md2man %{import_path}
+go build -o bin/go-md2man %{import_path}
 
 %install
 install -m 0755 -vd %{buildroot}%{_bindir}
