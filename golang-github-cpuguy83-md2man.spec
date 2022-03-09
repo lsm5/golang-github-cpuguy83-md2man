@@ -22,7 +22,7 @@ Converts markdown into roff (man pages).}
 
 Name: golang-github-cpuguy83-md2man
 Version: 2.0.0
-Release: %autorelease
+Release: 10%{?dist}
 Summary: Converts markdown into roff (man pages)
 License: MIT
 URL: https://%{import_path}
@@ -64,4 +64,5 @@ install -m 0755 -vp bin/* %{buildroot}%{_bindir}/
 %{_bindir}/*
 
 %changelog
-%autochangelog
+* Mon Feb 28 2022 Lokesh Mandvekar <lsm5@redhat.com> - 2.0.0-10
+- centos 8 doesn't like autospec
